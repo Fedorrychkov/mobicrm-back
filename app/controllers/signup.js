@@ -16,7 +16,6 @@ const DirectorSignupController = async ctx => {
         } else {
             const salt = await crypto.randomBytes(128).toString('base64');
             const passHash = await crypto.pbkdf2Sync(request.password, salt, 1, 128, 'sha256').toString('base64');
-            console.log(passHash);
             const res = await Directors.create({
                 login: request.login,
                 password: passHash,
@@ -34,7 +33,6 @@ const DirectorSignupController = async ctx => {
             }
         }
     } catch (ex) {
-        console.log(`time:(${new Date()}): ${ex}`);
         response = {
             body: {},
             errorBody: {},
