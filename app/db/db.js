@@ -3,6 +3,7 @@ const config = require('../../config/database.json');
 const db = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
   dialect: 'mysql',
+  charset: config.define.charset,
   pool: {
     max: 5,
     min: 0,

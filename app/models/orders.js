@@ -10,7 +10,7 @@ const Orders = db.db.define('orders', {
     },
     company_id: Sequelize.INTEGER,
     customer_id: Sequelize.INTEGER,
-    address: Sequelize.STRING,
+    address: Sequelize.STRING(300),
     longitude: Sequelize.STRING,
     latitude: Sequelize.STRING,
     description: Sequelize.STRING(400),
@@ -22,7 +22,9 @@ const Orders = db.db.define('orders', {
 
 function mockData() { 
     db.db.sync({force: true}).then(() => {
-        mock.forEach(item => Orders.create(item));
+        mock.items.forEach(item => {
+            Orders.create(item); 
+        });
     });
 }
 
