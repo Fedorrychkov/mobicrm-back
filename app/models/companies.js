@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
-const db = require('../db/db');
+const { db } = require('../db/db');
 const mock = require('../../mocks/models/companies.json')
 
-const Companies = db.db.define('companies', {
+const Companies = db.define('companies', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -20,7 +20,7 @@ const Companies = db.db.define('companies', {
 });
 
 function mockData() { 
-    db.db.sync({force: true}).then(() => {
+    db.sync({force: true}).then(() => {
         mock.items.forEach(item => {
             Companies.create(item); 
         });
