@@ -7,8 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "start": "pm2 start ./app && pm2 logs app",
-    "show-logs": "pm2 logs app"
+    "start": "pm2 start ./app/mobicrm-start.js && pm2 logs mobicrm-start",
+    "pm2-delete": "pm2 delete mobicrm-start",
+    "pm2-restart": "npm run pm2-delete && npm start",
+    "show-logs": "pm2 logs mobicrm-start"
   },
   "keywords": [],
   "author": "Fyodor Rychkov",
