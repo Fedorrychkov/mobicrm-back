@@ -1,0 +1,52 @@
+{
+    "items": [
+        {
+            "company_id": 1,
+            "customer_id": 1,
+            "address": "г. Казань ул. Кремлёвская д. 35 кв 38",
+            "longitude": "55.792414",
+            "latitude": "49.120081",
+            "description": "Заказчик хочет провести замер окон",
+            "status": "NEW",
+            "who_created": 1,
+            "date_created": "2018-04-08 12:18:59",
+            "date_updated": "2018-04-08 12:18:59"
+        },
+        {
+            "company_id": 1,
+            "customer_id": 2,
+            "address": "г. Казань ул. Кремлёвская д. 33 кв 38",
+            "longitude": "55.794414",
+            "latitude": "49.120081",
+            "description": "Заказчик хочет провести замер окон",
+            "status": "IN PROGRESS",
+            "who_created": 1,
+            "date_created": "2018-04-08 12:18:59",
+            "date_updated": "2018-04-08 12:18:59"
+        },
+        {
+            "company_id": 1,
+            "customer_id": 2,
+            "address": "г. Казань ул. Кремлёвская д. 3 кв 38",
+            "longitude": "55.194414",
+            "latitude": "49.120081",
+            "description": "Заказчик хочет провести замер окон",
+            "status": "IN PROGRESS",
+            "who_created": 1,
+            "date_created": "2018-04-08 12:18:59",
+            "date_updated": "2018-04-08 12:18:59"
+        },
+        {
+            "company_id": 1,
+            "customer_id": 3,
+            "address": "г. Казань ул. Кремлёвская д. 34 кв 38",
+            "longitude": "55.791414",
+            "latitude": "49.120081",
+            "description": "Заказчик хочет провести замер окон",
+            "status": "DONE",
+            "who_created": 1,
+            "date_created": "2018-04-08 12:18:59",
+            "date_updated": "2018-04-08 12:18:59"
+        }
+    ]
+}
