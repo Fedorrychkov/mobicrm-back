@@ -28,7 +28,6 @@ function mockData() {
     });
 }
 
-mockData()
 
 module.exports = {
     Orders,

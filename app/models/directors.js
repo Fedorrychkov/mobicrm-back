@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db/db');
+const mock = require('../../mocks/models/directors.json')
 
 const Directors = db.db.define('directors', {
     id: {
@@ -19,16 +20,14 @@ const Directors = db.db.define('directors', {
     date_updated: Sequelize.STRING,
 });
 
-function resetData() { 
+function mockData() { 
     db.db.sync({force: true}).then(() => {
-        Directors.create({
-        first_name: "Fedor",
-        last_name: "Rychkov",
-        login: "fedorrychkov",
-        email: "fedorrychkov@ya.ru", 
+        mock.items.forEach(item => {
+            Directors.create(item); 
         });
     });
 }
+
 
 module.exports = {
     Directors,

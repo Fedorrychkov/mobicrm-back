@@ -1,0 +1,20 @@
+{
+    "items": [
+        {
+            "company_id": 1,
+            "first_name": "Михаил",
+            "last_name": "Михайлов",
+            "login": "manager1@1",
+            "password": "123123",
+            "phone": "+79999992211",
+            "email": "manager@manager.ru",
+            "avatar": "public/",
+            "role": 1,
+            "status": "NEW",
+            "who_created": 1,
+            "date_birthday": "1989-04-08",
+            "date_created": "2018-04-08 12:18:59",
+            "date_updated": "2018-04-08 12:18:59"
+        }
+    ]
+}

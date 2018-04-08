@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db/db');
+const mock = require('../../mocks/models/roles.json')
 
 const Roles = db.db.define('roles', {
     id: {
@@ -13,12 +14,15 @@ const Roles = db.db.define('roles', {
     date_updated: Sequelize.STRING,
 });
 
-function resetData() { 
+function mockData() { 
     db.db.sync({force: true}).then(() => {
-        Roles.create({
+        mock.items.forEach(item => {
+            Roles.create(item); 
         });
     });
 }
+
+
 module.exports = {
     Roles,
 }

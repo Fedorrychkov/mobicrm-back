@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db/db');
+const mock = require('../../mocks/models/employees.json')
 
 const Employees = db.db.define('employees', {
     id: {
@@ -23,13 +24,14 @@ const Employees = db.db.define('employees', {
     date_updated: Sequelize.STRING,
 });
 
-function resetData() { 
+function mockData() { 
     db.db.sync({force: true}).then(() => {
-        Employees.create({
-            company_id: 1,
+        mock.items.forEach(item => {
+            Employees.create(item); 
         });
     });
 }
+
 
 module.exports = {
     Employees,
