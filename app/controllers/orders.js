@@ -1,9 +1,9 @@
 const { Orders } = require('../models/orders');
 
 const OrdersController = async ctx => {
-    const collection = await Orders.findAll({where: {company_id: ctx.params.id}});
     let response = {}
     try {
+        const collection = await Orders.findAll({where: {company_id: ctx.params.id}});
         if (collection.length > 0) {
             response = { 
                 body: collection, 

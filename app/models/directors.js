@@ -1,4 +1,6 @@
 const Sequelize = require('sequelize');
+const uuid = require('uuid/v4');
+
 const { db } = require('../db/db');
 const mock = require('../../mocks/models/directors.json')
 
@@ -6,14 +8,16 @@ const Directors = db.define('directors', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
+        allowNull: false,
         autoIncrement: true
     },
     first_name: Sequelize.STRING,
     last_name: Sequelize.STRING,
     login: Sequelize.STRING,
-    password: Sequelize.STRING(9999),
+    password: Sequelize.STRING,
+    salt: Sequelize.STRING,
     email: Sequelize.STRING,
-    avatar: Sequelize.STRING(700),
+    avatar: Sequelize.STRING,
     status: Sequelize.STRING,
     date_birthday: Sequelize.STRING,
     date_created: Sequelize.STRING,
@@ -28,7 +32,7 @@ function mockData() {
     });
 }
 
-
+// mockData()
 module.exports = {
     Directors,
 }

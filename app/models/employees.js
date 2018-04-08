@@ -12,7 +12,8 @@ const Employees = db.define('employees', {
     first_name: Sequelize.STRING,
     last_name: Sequelize.STRING,
     login: Sequelize.STRING,
-    password: Sequelize.STRING(9999),
+    password: Sequelize.STRING(999),
+    salt: Sequelize.STRING(999),
     phone: Sequelize.STRING,
     email: Sequelize.STRING,
     avatar: Sequelize.STRING(700),
@@ -31,7 +32,6 @@ function mockData() {
         });
     });
 }
-
 
 module.exports = {
     Employees,
