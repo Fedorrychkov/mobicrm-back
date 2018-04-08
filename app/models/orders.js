@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db/db');
+const mock = require('../../mocks/models/orders.json')
 
 const Orders = db.db.define('orders', {
     id: {
@@ -12,22 +13,20 @@ const Orders = db.db.define('orders', {
     address: Sequelize.STRING,
     longitude: Sequelize.STRING,
     latitude: Sequelize.STRING,
-    description: Sequelize.STRING(9999),
-    avatar: Sequelize.STRING(700),
+    description: Sequelize.STRING(400),
     status: Sequelize.STRING,
     who_created: Sequelize.INTEGER,
     date_created: Sequelize.STRING,
     date_updated: Sequelize.STRING,
 });
 
-function resetData() { 
+function mockData() { 
     db.db.sync({force: true}).then(() => {
-        Orders.create({
-            company_id: 1,
-            customer_id: 1,
-        });
+        mock.forEach(item => Orders.create(item));
     });
 }
+
+mockData()
 
 module.exports = {
     Orders,
