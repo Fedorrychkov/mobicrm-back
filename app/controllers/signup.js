@@ -15,10 +15,11 @@ const DirectorSignupController = async ctx => {
             }
         } else {
             const salt = await crypto.randomBytes(128).toString('base64');
-            const passHash = await crypto.pbkdf2Sync(request.password, salt, 1, 128, 'sha256').toString('base64');
+            const passHash = await crypto.pbkdf2Sync(request.password, salt, 1, 128, 'sha256');
+            // ctx.session.pass = passHash.toString('base64');
             const res = await Directors.create({
                 login: request.login,
-                password: passHash,
+                password: passHash.toString('base64'),
                 salt: salt,
                 first_name: request.first_name,
                 last_name: request.last_name,
