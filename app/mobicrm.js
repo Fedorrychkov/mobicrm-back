@@ -1,19 +1,22 @@
 const Koa           = require('koa'),
       bodyParser    = require('koa-bodyparser'),
       // session       = require('koa-session'),
-      session       = require("koa-session2"),
+      // session       = require("koa-session2"),
       cors          = require('kcors'),
       requestId     = require('./middlewares/requestId'),
       logger        = require('koa-logger'),
       serve         = require('koa-static'),
       passport      = require('koa-passport'),
+      session       = require('koa-session'),
       LocalStrategy = require('passport-local'),
       JwtStrategy   = require('passport-jwt').Strategy,
       ExtractJwt    = require('passport-jwt').ExtractJwt;
 
-const config = require('../config/application.json');
-const router = require('./routes');
-const app = new Koa();
+const config        = require('../config/application.json');
+const redisConfig   = require('../config/redisConfig');
+const router        = require('./routes');
+// const { DirectorLocalStrategy } = require('./authenticate/directors/auth');
+const app           = new Koa();
 
 // app.keys = ['some secret hurr'];
  
@@ -30,11 +33,29 @@ const app = new Koa();
 //   renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
 // };
 
+app.keys = ['SECRET']
 app
   // .use(session(CONFIG, app))
-  .use(session)
+  // .use(session)
+  // .use(session({
+  //   store: new RedisStore({
+  //       url: redisConfig.config.redisStore.url
+  //   }),
+  //   secret: redisConfig.config.redisStore.secret,
+  //   resave: false,
+  //   saveUninitialized: false
+  // }))
+  .use(session({}, app))
   .use(passport.initialize())
-  .use(router.routes())
+  .use(passport.session())
+  // .use(DirectorLocalStrategy())
+  // .use(async ctx => {
+  //   ctx.isAuthenticated()
+  //   ctx.isUnauthenticated()
+  //   await ctx.login()
+  //   ctx.logout()
+  //   ctx.state.user
+  // })
   .use(serve('public'))
   .use(logger())
   .use(
@@ -52,6 +73,7 @@ app
       exposeHeaders: ['X-Request-Id']
     })
   )
+  .use(router.routes())
   .listen(config.port);
 
 console.log(`MobiCRM started in ${config.port}`);
