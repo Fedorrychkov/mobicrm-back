@@ -1,6 +1,8 @@
 const { Directors, createPassAndSaltHas } = require('../../models/directors'),
       crypto = require('crypto');
 
+require('../../authenticate/directors/auth');
+
 const DirectorSignupController = async ctx => {
     let response = {}
     const request = ctx.request.body;

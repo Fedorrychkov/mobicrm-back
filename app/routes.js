@@ -2,7 +2,7 @@ const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser')();
 const passport = require('koa-passport');
 const jwt = require('jsonwebtoken');
-require('./authenticate/directors/auth');
+// require('./authenticate/directors/auth');
 const { GetOrdersByCompanyIdController, CreateNewOrderController } = require('./controllers/orders/');
 const { DirectorSignupController, DirectorLoginController } = require('./controllers/directors/');
 const { CreateCompanyController } = require('./controllers/companies/');

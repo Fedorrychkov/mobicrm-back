@@ -2,6 +2,9 @@ const { Orders } = require('../../models/orders'),
       passport = require('koa-passport'),
       { INTERNAL_ERROR } = require('../../constants/error');
 
+
+require('../../authenticate/directors/auth');
+
 const GetOrdersByCompanyIdController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
