@@ -31,17 +31,16 @@ const jwtOptions = {
   secretOrKey: jwtConfig.mysecretkey
 };
 
-passport.use(new JwtStrategy(jwtOptions, function (payload, done) {
-  console.log('------------------------JwtStrategy.js');
-  Directors.findById(payload.id, (err, user) => {
-    if (err) {
-      return done(err)
-    }
-    if (user) {
-      done(null, user)
-    } else {
-      done(null, false)
-    }
-  })
-})
-);
+passport.use(new JwtStrategy(jwtOptions, async (payload, done) => {
+  await Directors.findById(payload.id)
+    .then(user => {
+      if (user) {
+        done(null, user);
+      } else {
+        done(null, false);
+      }
+    })
+    .catch(err => {
+      return done(err);
+    });
+}));
