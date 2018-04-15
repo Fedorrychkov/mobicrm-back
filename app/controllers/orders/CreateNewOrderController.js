@@ -1,6 +1,10 @@
 const { Orders } = require('../../models/orders'),
       passport = require('koa-passport'),
-      { INTERNAL_ERROR } = require('../../constants/error');
+      { INTERNAL_ERROR } = require('../../constants/error'),
+      jwt = require('jsonwebtoken'),
+      jwtConfig = require('../../../config/jwt.json'),
+      { INTERNAL_ERROR } = require('../../constants/error'),
+      { CREATED } = require('../../constants/success');
 
 
 require('../../authenticate/directors/auth');

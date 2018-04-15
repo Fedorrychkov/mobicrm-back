@@ -6,23 +6,21 @@ const { Orders } = require('../../models/orders'),
 
 require('../../authenticate/directors/auth');
 
-const GetOrdersByCompanyIdController = async (ctx, next) => {
+const GetOrderByCompanyIdController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
         try {
             if (user) {
-                const collection = await Orders.findAll({where: {company_id: ctx.params.id}});
+                const collection = await Orders.findOne({where: {company_id: ctx.params.id, id: ctx.params.orderId}});
                 if (collection.length > 0) {
                     response = { 
                         body: collection,
-                        length: collection.length,
-                        status: OK.status,
+                        status: OK.status, 
                         status_text: OK.status_text
                     }
                 } else {
                     response = { 
-                        body: collection, 
-                        length: collection.length, 
+                        body: collection,
                         status: 204,
                         status_text: 'No Content'
                     }
@@ -48,5 +46,5 @@ const GetOrdersByCompanyIdController = async (ctx, next) => {
 }
 
 module.exports = {
-    GetOrdersByCompanyIdController,
+    GetOrderByCompanyIdController,
 }
