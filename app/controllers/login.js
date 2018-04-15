@@ -1,7 +1,6 @@
-const passport = require('koa-passport');
-const jwt = require('jsonwebtoken');
-require('../authenticate/directors/auth');
-const jwtConfig = require('../../config/jwt.json');
+const passport = require('koa-passport'),
+      jwt = require('jsonwebtoken'),
+      jwtConfig = require('../../config/jwt.json');
 
 const DirectorLoginController = async (ctx, next) => {
   await passport.authenticate('local', (err, user) => {
@@ -16,7 +15,7 @@ const DirectorLoginController = async (ctx, next) => {
       };
       console.log(payload);
       const token = jwt.sign(payload, jwtConfig.mysecretkey);
-      ctx.body = {user: user.login, token: token};
+      ctx.body = {user: user.login, email: user.email, token: token};
     }
   })(ctx, next);
 }
