@@ -1,8 +1,6 @@
-const Sequelize = require('sequelize');
-const uuid = require('uuid/v4');
-
-const { db } = require('../db/db');
-const mock = require('../../mocks/models/directors.json')
+const Sequelize = require('sequelize'),
+      { db }    = require('../db/db'),
+      mock      = require('../../mocks/models/directors.json');
 
 const Directors = db.define('directors', {
     id: {
@@ -32,7 +30,35 @@ function mockData() {
     });
 }
 
-// mockData()
+const hasUser = async (login, password) => {
+    res = await Directors.findOne({where: {login: login, password: password}});
+    return res;
+}
+
+const hasLogin = async (login) => {
+    res = await Directors.findOne({where: {login: login}});
+    return res;
+}
+
+const hasEmail = async (email) => {
+    res = await Directors.findOne({where: {email: email}});
+    return res;
+}
+
+const createPassAndSaltHas = async (password) => {
+    const salt = await crypto.randomBytes(128).toString('base64');
+    const passHash = await crypto.pbkdf2Sync(password, salt, 1, 128, 'sha256').toString('base64');
+    return { salt, passHash };
+}
+
+const checkPassword = async (login, password, salt) => {
+    const user = await Directors.findOne({where: {login: login}});
+    const passHash = await crypto.pbkdf2Sync(password, salt || user.salt, 1, 128, 'sha256').toString('base64');
+    return passHash == user.password;
+}
+
 module.exports = {
     Directors,
+    createPassAndSaltHas,
+    checkPassword,
 }
