@@ -9,7 +9,7 @@
   "scripts": {
     "start": "pm2 start ./app/mobicrm.js && pm2 logs mobicrm",
     "pm2-delete": "pm2 delete mobicrm",
-    "pm2-restart": "npm run pm2-delete && npm start",
+    "pm2-restart": "pm2 restart mobicrm && pm2 logs mobicrm",
     "show-logs": "pm2 logs mobicrm"
   },
   "keywords": [],
