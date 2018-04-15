@@ -1,4 +1,4 @@
-const { Directors, createPassAndSaltHas } = require('../models/directors'),
+const { Directors, createPassAndSaltHas } = require('../../models/directors'),
       crypto = require('crypto');
 
 const DirectorSignupController = async ctx => {

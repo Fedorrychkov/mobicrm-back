@@ -1,8 +1,8 @@
 const passport = require('koa-passport'),
       jwt = require('jsonwebtoken'),
-      jwtConfig = require('../../config/jwt.json'),
-      { INTERNAL_ERROR } = require('../constants/error'),
-      { OK } = require('../constants/success');
+      jwtConfig = require('../../../config/jwt.json'),
+      { INTERNAL_ERROR } = require('../../constants/error'),
+      { OK } = require('../../constants/success');
 
 const DirectorLoginController = async (ctx, next) => {
   await passport.authenticate('local', (err, user) => {

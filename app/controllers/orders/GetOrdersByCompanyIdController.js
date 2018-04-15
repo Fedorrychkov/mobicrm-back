@@ -1,6 +1,6 @@
-const { Orders } = require('../models/orders'),
+const { Orders } = require('../../models/orders'),
       passport = require('koa-passport'),
-      { INTERNAL_ERROR } = require('../constants/error');
+      { INTERNAL_ERROR } = require('../../constants/error');
 
 const GetOrdersByCompanyIdController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
