@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser')();
-const { OrdersController } = require('./controllers/orders');
+const { GetOrdersByCompanyIdController } = require('./controllers/orders');
 const { DirectorSignupController } = require('./controllers/signup');
 const { DirectorLoginController } = require('./controllers/login');
 const { Directors } = require('./models/directors');
@@ -10,7 +10,7 @@ require('./authenticate/directors/auth');
 const jwtConfig = require('../config/jwt.json');
 const router = new Router();
 
-router.get('/company/:id/orders', OrdersController);
+router.get('/company/:id/orders', GetOrdersByCompanyIdController);
 router.post('/director', bodyParser, DirectorSignupController);
 router.post('/director/login', bodyParser, DirectorLoginController);
 

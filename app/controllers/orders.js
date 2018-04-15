@@ -1,6 +1,8 @@
-const { Orders } = require('../models/orders');
-const passport = require('koa-passport');
-const OrdersController = async (ctx, next) => {
+const { Orders } = require('../models/orders'),
+      passport = require('koa-passport'),
+      { INTERNAL_ERROR } = require('../constants/error');
+
+const GetOrdersByCompanyIdController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
         try {
@@ -33,8 +35,8 @@ const OrdersController = async (ctx, next) => {
             response = { 
                 body: {},
                 length: 0, 
-                status: 500, 
-                status_text: 'Internal Server Error'
+                status: INTERNAL_ERROR.status, 
+                status_text: INTERNAL_ERROR.status_text
             }
         }
         ctx.body = response;
@@ -42,5 +44,5 @@ const OrdersController = async (ctx, next) => {
 }
 
 module.exports = {
-    OrdersController,
+    GetOrdersByCompanyIdController,
 }
