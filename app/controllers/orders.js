@@ -1,33 +1,44 @@
 const { Orders } = require('../models/orders');
-
-const OrdersController = async ctx => {
-    let response = {}
-    try {
-        const collection = await Orders.findAll({where: {company_id: ctx.params.id}});
-        if (collection.length > 0) {
-            response = { 
-                body: collection, 
-                length: collection.length, 
-                status: 200, 
-                status_text: 'OK'
+const passport = require('koa-passport');
+const OrdersController = async (ctx, next) => {
+    await passport.authenticate('jwt', async (err, user) => {
+        let response = {}
+        try {
+            if (user) {
+                const collection = await Orders.findAll({where: {company_id: ctx.params.id}});
+                if (collection.length > 0) {
+                    response = { 
+                        body: collection, 
+                        length: collection.length, 
+                        status: 200, 
+                        status_text: 'OK'
+                    }
+                } else {
+                    response = { 
+                        body: collection, 
+                        length: collection.length, 
+                        status: 204,
+                        status_text: 'No Content'
+                    }
+                }
+            } else {
+                response = {
+                    body: err,
+                    length: 0,
+                    status: 401,
+                    status_text: 'Unauthorized'
+                }
             }
-        } else {
+        } catch (ex) {
             response = { 
-                body: collection, 
-                length: collection.length, 
-                status: 204,
-                status_text: 'No Content'
+                body: {},
+                length: 0, 
+                status: 500, 
+                status_text: 'Internal Server Error'
             }
         }
-    } catch (ex) {
-        response = { 
-            body: {},
-            length: 0, 
-            status: 500, 
-            status_text: 'Internal Server Error'
-        }
-    }
-    ctx.body = response;
+        ctx.body = response;
+      })(ctx, next);
 }
 
 module.exports = {
