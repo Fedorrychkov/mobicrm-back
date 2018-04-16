@@ -4,7 +4,6 @@ const passport = require('koa-passport'),
       { INTERNAL_ERROR } = require('../../constants/error'),
       { OK } = require('../../constants/success');
 
-require('../../authenticate/directors/auth');
 
 const DirectorLoginController = async (ctx, next) => {
   await passport.authenticate('local', (err, user) => {

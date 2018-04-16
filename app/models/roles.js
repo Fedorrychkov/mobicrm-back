@@ -8,7 +8,7 @@ const Roles = db.define('roles', {
         primaryKey: true,
         autoIncrement: true
     },
-    name: Sequelize.STRING,
+    name: Sequelize.STRING, // Менеджер, Исполнитель
     status: Sequelize.STRING,
     date_created: Sequelize.STRING,
     date_updated: Sequelize.STRING,

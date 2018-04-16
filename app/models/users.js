@@ -1,25 +1,26 @@
 const Sequelize = require('sequelize'),
       { db }    = require('../db/db'),
-      mock      = require('../../mocks/models/directors.json');
+      mock      = require('../../mocks/models/employees.json');
 
-const Directors = db.define('directors', {
+const Users = db.define('users', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
     },
-    // company_id: Sequelize.INTEGER,
+    company_id: Sequelize.INTEGER,
     first_name: Sequelize.STRING,
     last_name: Sequelize.STRING,
-    login: Sequelize.STRING, 
+    login: Sequelize.STRING,
     password: Sequelize.STRING,
-    phone: Sequelize.STRING,
     salt: Sequelize.STRING,
+    phone: Sequelize.STRING,
     email: Sequelize.STRING,
     avatar: Sequelize.STRING,
+    role: Sequelize.INTEGER,
     status: Sequelize.STRING,
-    role: Sequelize.STRING,
+    who_created: Sequelize.INTEGER,
     date_birthday: Sequelize.STRING,
     date_created: Sequelize.STRING,
     date_updated: Sequelize.STRING,
@@ -28,23 +29,23 @@ const Directors = db.define('directors', {
 function mockData() { 
     db.sync({force: true}).then(() => {
         mock.items.forEach(item => {
-            Directors.create(item); 
+            Users.create(item); 
         });
     });
 }
 
 const hasUser = async (login, password) => {
-    res = await Directors.findOne({where: {login: login, password: password}});
+    res = await Users.findOne({where: {login: login, password: password}});
     return res;
 }
 
 const hasLogin = async (login) => {
-    res = await Directors.findOne({where: {login: login}});
+    res = await Users.findOne({where: {login: login}});
     return res;
 }
 
 const hasEmail = async (email) => {
-    res = await Directors.findOne({where: {email: email}});
+    res = await Users.findOne({where: {email: email}});
     return res;
 }
 
@@ -55,13 +56,13 @@ const createPassAndSaltHas = async (password) => {
 }
 
 const checkPassword = async (login, password, salt) => {
-    const user = await Directors.findOne({where: {login: login}});
+    const user = await Users.findOne({where: {login: login}});
     const passHash = await crypto.pbkdf2Sync(password, salt || user.salt, 1, 128, 'sha256').toString('base64');
     return passHash == user.password;
 }
 
 module.exports = {
-    Directors,
+    Users,
     createPassAndSaltHas,
     checkPassword,
 }

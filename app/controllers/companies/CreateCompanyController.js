@@ -5,8 +5,6 @@ const passport = require('koa-passport'),
       { INTERNAL_ERROR } = require('../../constants/error'),
       { CREATED } = require('../../constants/success');
 
-require('../../authenticate/directors/auth');
-
 const CreateCompanyController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}

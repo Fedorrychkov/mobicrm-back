@@ -15,7 +15,7 @@ const Customers = db.define('customers', {
     email: Sequelize.STRING,
     address: Sequelize.STRING,
     avatar: Sequelize.STRING(700),
-    status: Sequelize.STRING,
+    status: Sequelize.STRING, // Физик, Юрик
     date_birthday: Sequelize.STRING,
     date_created: Sequelize.STRING,
     date_updated: Sequelize.STRING,

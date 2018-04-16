@@ -5,8 +5,6 @@ const { Orders } = require('../../models/orders'),
       { INTERNAL_ERROR } = require('../../constants/error'),
       { CREATED } = require('../../constants/success');
 
-
-require('../../authenticate/directors/auth');
 const CreateNewOrderController = async (ctx, next) => {
     let response = {};
     

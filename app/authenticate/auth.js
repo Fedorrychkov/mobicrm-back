@@ -1,11 +1,11 @@
 const passport = require('koa-passport'),
-      { db }   = require('../../db/db'),
-      { Directors, checkPassword } = require('../../models/directors'),
+      { db }   = require('../db/db'),
+      { Users, checkPassword } = require('../models/users'),
       LocalStrategy = require('passport-local'), //local Auth Strategy
       JwtStrategy = require('passport-jwt').Strategy, // Auth via JWT
       ExtractJwt = require('passport-jwt').ExtractJwt;
       crypto = require('crypto'),
-      jwtConfig = require('../../../config/jwt.json');
+      jwtConfig = require('../../config/jwt.json');
 
 passport.use(new LocalStrategy({
   usernameField: 'login',
@@ -13,7 +13,7 @@ passport.use(new LocalStrategy({
   session: false
 },
 async (login, password, done) => {
-  await Directors.findOne({where: {login: login}})
+  await Users.findOne({where: {login: login}})
     .then( async user => {
       const passEqual = await checkPassword(login, password, user.salt)
       if (!user || !passEqual) {
@@ -32,7 +32,7 @@ const jwtOptions = {
 };
 
 passport.use(new JwtStrategy(jwtOptions, async (payload, done) => {
-  await Directors.findById(payload.id)
+  await Users.findById(payload.id)
     .then(user => {
       if (user) {
         done(null, user);

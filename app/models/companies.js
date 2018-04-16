@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const { db } = require('../db/db');
-const mock = require('../../mocks/models/companies.json')
+const mock = require('../../mocks/models/companies.json');
 
 const Companies = db.define('companies', {
     id: {

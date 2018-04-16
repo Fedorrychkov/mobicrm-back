@@ -1,7 +1,5 @@
-const { Directors, createPassAndSaltHas } = require('../../models/directors'),
+const { Users, createPassAndSaltHas } = require('../../models/users'),
       crypto = require('crypto');
-
-require('../../authenticate/directors/auth');
 
 const DirectorSignupController = async ctx => {
     let response = {}
@@ -14,8 +12,8 @@ const DirectorSignupController = async ctx => {
                 status_text: 'Bad Request'
             }
         } else {
-            const hasUserByLogin = await Directors.findAll({where: {login: request.login}});
-            const hasUserByEmail = await Directors.findAll({where: {email: request.email}});
+            const hasUserByLogin = await Users.findAll({where: {login: request.login}});
+            const hasUserByEmail = await Users.findAll({where: {email: request.email}});
             if (hasUserByLogin.length > 0 || hasUserByEmail.length > 0) {
                 response = {
                     body: {},
@@ -28,14 +26,10 @@ const DirectorSignupController = async ctx => {
                     passHash: ''
                 };
                 cryptoHash= await createPassAndSaltHas(request.password);
-                const res = await Directors.create({
-                    login: request.login,
-                    password: cryptoHash.passHash,
-                    salt: cryptoHash.salt,
-                    first_name: request.first_name,
-                    last_name: request.last_name,
-                    email: request.email
-                });
+                newReq = request;
+                newReq.password = cryptoHash.passHash;
+                newReq.salt = cryptoHash.salt;
+                const res = await Users.create(newReq);
                 if (res) {
                     response = {
                         body: {token: ''},

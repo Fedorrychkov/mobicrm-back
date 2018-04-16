@@ -3,9 +3,6 @@ const { Orders } = require('../../models/orders'),
       { INTERNAL_ERROR } = require('../../constants/error'),
       { CREATED, OK } = require('../../constants/success');
 
-
-require('../../authenticate/directors/auth');
-
 const GetOrderByCompanyIdController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
