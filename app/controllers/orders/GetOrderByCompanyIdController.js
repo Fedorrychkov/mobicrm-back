@@ -4,6 +4,10 @@ const { Orders } = require('../../models/orders'),
       { INTERNAL_ERROR } = require('../../constants/error'),
       { CREATED, OK } = require('../../constants/success');
 
+/**
+ * Get one order by id and by company id.
+ * @param {ctx} - has some properties from client
+ */
 const GetOrderByCompanyIdController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
