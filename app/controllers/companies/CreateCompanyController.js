@@ -9,7 +9,7 @@ const CreateCompanyController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
         try {
-            if (user) {
+            if (user && user.role == 1) {
                 const req = ctx.request.body;
                 let newReq = {
                     ...req,
