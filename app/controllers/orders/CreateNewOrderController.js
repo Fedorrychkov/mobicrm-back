@@ -6,8 +6,37 @@ const { Orders } = require('../../models/orders'),
       { CREATED } = require('../../constants/success');
 
 const CreateNewOrderController = async (ctx, next) => {
-    let response = {};
-    
+    await passport.authenticate('jwt', async (err, user) => {
+        let response = {}
+        try {
+            if (user) {
+                const req = ctx.request.body;
+                const res = await Orders.create(req);
+                if (res) {
+                    response = {
+                        body: res,
+                        status: CREATED.status,
+                        status_text: CREATED.status_text
+                    }
+                }
+            } else {
+                response = {
+                    body: err,
+                    length: 0,
+                    status: 401,
+                    status_text: 'Unauthorized'
+                }
+            }
+        } catch (ex) {
+            response = { 
+                body: ex,
+                length: 0, 
+                status: INTERNAL_ERROR.status, 
+                status_text: INTERNAL_ERROR.status_text
+            }
+        }
+        ctx.body = response;
+    })(ctx, next);
 }
 module.exports = {
     CreateNewOrderController,
