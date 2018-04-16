@@ -9,7 +9,7 @@ const GetOrderByCompanyIdController = async (ctx, next) => {
         try {
             if (user) {
                 const collection = await Orders.findOne({where: {company_id: ctx.params.id, id: ctx.params.orderId}});
-                if (collection.length > 0) {
+                if (collection) {
                     response = { 
                         body: collection,
                         status: OK.status, 
@@ -17,7 +17,7 @@ const GetOrderByCompanyIdController = async (ctx, next) => {
                     }
                 } else {
                     response = { 
-                        body: collection,
+                        body: {},
                         status: 204,
                         status_text: 'No Content'
                     }
@@ -32,7 +32,7 @@ const GetOrderByCompanyIdController = async (ctx, next) => {
             }
         } catch (ex) {
             response = { 
-                body: {},
+                body: ex,
                 length: 0, 
                 status: INTERNAL_ERROR.status, 
                 status_text: INTERNAL_ERROR.status_text
