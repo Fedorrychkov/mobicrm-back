@@ -18,7 +18,7 @@ const CreateNewOrderController = async (ctx, next) => {
                 req.customer.company_id = req.company_id; // Add company_id in customer model
                 req.who_created = user.id;
                 if (req.customer) { // if we have customer property, we have try find customer by phone
-                    const checkPhone = await Customers.findOne({where: {phone: req.customer.phone}});
+                    const checkPhone = await Customers.findOne({where: {company_id: req.company_id, phone: req.customer.phone}});
                     if(!checkPhone) { // if we can't find this, create new customer
                         const customer = await Customers.create(req.customer);
                         req.customer_id = customer.id;
