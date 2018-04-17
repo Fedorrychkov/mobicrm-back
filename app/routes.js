@@ -3,9 +3,17 @@ const bodyParser = require('koa-bodyparser')();
 const passport = require('koa-passport');
 const jwt = require('jsonwebtoken');
 require('./authenticate/auth');
-const { GetOrdersByCompanyIdController, CreateNewOrderController, GetOrderByCompanyIdController } = require('./controllers/orders/');
-const { DirectorSignupController, DirectorLoginController } = require('./controllers/directors/');
+
+const { GetOrdersByCompanyIdController,
+        CreateNewOrderController,
+        GetOrderByCompanyIdController } = require('./controllers/orders/');
+const { DirectorSignupController,
+        DirectorLoginController } = require('./controllers/directors/');
 const { CreateCompanyController } = require('./controllers/companies/');
+const { GetCustomerByCompanyController,
+        GetCustomersByCompanyController,
+        CreateCustomerController,
+        UpdateCustomerController } = require('./controllers/customers')
 
 const router = new Router();
 
@@ -35,10 +43,10 @@ router.get('/company/:id/orders/:orderId', GetOrderByCompanyIdController);
 /**
  * Customers Endpoints
  */
-// router.post('/company/:id/customers', bodyParser, {}); // Create new customer
-// router.get('/company/:id/customers', {}); // Get list of customer in company
-// router.get('/company/:id/customers/:customerId', {}); // Get one of customer in company
-// router.put('/company/:id/customers/:customerId', {}); // Change info about customer in company
+router.post('/company/customers', bodyParser, CreateCustomerController); // Create new customer
+router.put('/company/customers', UpdateCustomerController); // Change info about customer in company
+router.get('/company/:id/customers', GetCustomersByCompanyController); // Get list of customer in company
+router.get('/company/:id/customers/:customerId', GetCustomerByCompanyController); // Get one of customer in company
 
 /**
  * Employees Endpoints
