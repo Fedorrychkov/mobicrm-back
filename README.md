@@ -18,5 +18,5 @@ GET `/company/:id/orders/:orderId` - get order by company id <br/>
 POST `/company/customers` - create new Customer <br/>
 PUT `/company/customers` - update new Customer <br/>
 GET `/company/:id/customers` - get list of customers by company id <br/>
-GET `/company/:id/customers/:phone` - get list of customers by phone and company id <br/>
+GET `/company/:id/customers/phone/:phone` - get list of customers by phone and company id <br/>
 GET `/company/:id/customers/:customerId` - get customer by company id <br/>
