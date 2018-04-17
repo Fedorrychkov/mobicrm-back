@@ -13,7 +13,8 @@ const { CreateCompanyController } = require('./controllers/companies/');
 const { GetCustomerByCompanyController,
         GetCustomersByCompanyController,
         CreateCustomerController,
-        UpdateCustomerController } = require('./controllers/customers')
+        UpdateCustomerController,
+        GetCustomerByPhone } = require('./controllers/customers')
 
 const router = new Router();
 
@@ -45,6 +46,7 @@ router.get('/company/:id/orders/:orderId', GetOrderByCompanyIdController);
  */
 router.post('/company/customers', bodyParser, CreateCustomerController); // Create new customer
 router.put('/company/customers', UpdateCustomerController); // Change info about customer in company
+router.get('/company/:id/customers/:phone', GetCustomerByPhone); // Get Customer by Phone
 router.get('/company/:id/customers', GetCustomersByCompanyController); // Get list of customer in company
 router.get('/company/:id/customers/:customerId', GetCustomerByCompanyController); // Get one of customer in company
 
