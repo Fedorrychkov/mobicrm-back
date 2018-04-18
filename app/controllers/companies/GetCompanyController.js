@@ -1,6 +1,6 @@
 const { Companies } = require('../../models/companies'),
       passport = require('koa-passport'),
-      { INTERNAL_ERROR, UNAUTHORIZED } = require('../../constants/error'),
+      { INTERNAL_ERROR, UNAUTHORIZED, BAD_REQUEST } = require('../../constants/error'),
       { CREATED, OK, NO_CONTENT } = require('../../constants/success');
 
 /**

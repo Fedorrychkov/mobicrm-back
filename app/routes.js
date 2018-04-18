@@ -7,19 +7,20 @@ require('./authenticate/auth');
 const { GetOrdersByCompanyIdController,
         CreateNewOrderController,
         GetOrderByCompanyIdController,
-        UpdateOrdersController } = require('./controllers/orders/');
+        UpdateOrdersController } = require('./controllers/orders');
 const { DirectorSignupController,
         DirectorLoginController,
         GetDirectorCompaniesController,
-        UpdateDirectorController } = require('./controllers/directors/');
+        UpdateDirectorController } = require('./controllers/directors');
 const { CreateCompanyController,
         UpdateCompanyController,
-        GetCompanyController } = require('./controllers/companies/');
+        GetCompanyController } = require('./controllers/companies');
 const { GetCustomerByCompanyController,
         GetCustomersByCompanyController,
         CreateCustomerController,
         UpdateCustomerController,
-        GetCustomerByPhone } = require('./controllers/customers')
+        GetCustomerByPhone } = require('./controllers/customers');
+const { CreateNewEmployee } = require('./controllers/employees');
 
 const router = new Router();
 
@@ -59,7 +60,7 @@ router.get('/company/:id/customers/:customerId', GetCustomerByCompanyController)
 /**
  * Employees Endpoints
  */
-// router.post('/company/:id/employees', bodyParser, {}); // Create new Employee
+router.post('/company/employees', bodyParser, CreateNewEmployee); // Create new Employee
 // router.get('/company/:id/employees', {}); // Employees list of company
 // router.get('/company/:id/employees/:employeeId', {}); // One employee of company
 // router.post('/employees/login', bodyParser, {}); // login for employees ?

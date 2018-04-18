@@ -25,3 +25,8 @@ PUT `/company/customers` - update Customer <br/>
 GET `/company/:id/customers` - get list of customers by company id <br/>
 GET `/company/:id/customers/phone/:phone` - get list of customers by phone and company id <br/>
 GET `/company/:id/customers/:customerId` - get customer by company id <br/>
+### Employees
+POST `/company/employees` - create new employee <br/>
+PUT `/company/employees` - update employee info <br/>
+GET `/company/:id/employees` - get list of employees<br/>
+GET `/company/:id/employees/:employeeId` - get one employee<br/>

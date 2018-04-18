@@ -4,7 +4,7 @@
  */
 module.exports.BAD_REQUEST = {
   status: 400,
-  status_text: 'Internal Server Error'
+  status_text: 'Bad Request'
 };
 module.exports.UNAUTHORIZED = {
   status: 401,

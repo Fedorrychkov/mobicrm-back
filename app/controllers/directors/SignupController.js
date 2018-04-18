@@ -27,7 +27,7 @@ const DirectorSignupController = async ctx => {
                     salt: '',
                     passHash: ''
                 };
-                cryptoHash= await createPassAndSaltHas(request.password);
+                cryptoHash = await createPassAndSaltHas(request.password);
                 newReq = request;
                 newReq.password = cryptoHash.passHash;
                 newReq.salt = cryptoHash.salt;

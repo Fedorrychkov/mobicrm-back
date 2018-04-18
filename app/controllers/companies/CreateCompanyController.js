@@ -2,7 +2,7 @@ const passport = require('koa-passport'),
       jwt = require('jsonwebtoken'),
       jwtConfig = require('../../../config/jwt.json'),
       { Companies } = require('../../models/companies'),
-      { INTERNAL_ERROR, UNAUTHORIZED } = require('../../constants/error'),
+      { INTERNAL_ERROR, UNAUTHORIZED, BAD_REQUEST } = require('../../constants/error'),
       { CREATED } = require('../../constants/success');
 
 const CreateCompanyController = async (ctx, next) => {
