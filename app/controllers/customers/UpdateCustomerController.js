@@ -4,7 +4,7 @@ const { Customers } = require('../../models/customers'),
       { CREATED, OK } = require('../../constants/success');
 
 /**
- * Get list of customers by company id.
+ * Update customer.
  * @param {ctx} - has some properties from client
  */
 const UpdateCustomerController = async (ctx, next) => {
