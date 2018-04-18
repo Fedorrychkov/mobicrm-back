@@ -6,7 +6,8 @@ require('./authenticate/auth');
 
 const { GetOrdersByCompanyIdController,
         CreateNewOrderController,
-        GetOrderByCompanyIdController } = require('./controllers/orders/');
+        GetOrderByCompanyIdController,
+        UpdateOrdersController } = require('./controllers/orders/');
 const { DirectorSignupController,
         DirectorLoginController } = require('./controllers/directors/');
 const { CreateCompanyController } = require('./controllers/companies/');
@@ -37,7 +38,7 @@ router.post('/company', bodyParser, CreateCompanyController);
  * Orders Endpoints
  */
 router.post('/company/orders', bodyParser, CreateNewOrderController);
-// router.put('/company/:id/orders/:orderId', bodyParser, {}); // change info about order
+router.put('/company/orders', bodyParser, UpdateOrdersController);
 router.get('/company/:id/orders', GetOrdersByCompanyIdController); // Для сортировки добавить больше ссылок,
 router.get('/company/:id/orders/:orderId', GetOrderByCompanyIdController);
 

@@ -12,6 +12,7 @@ POST `/director/login` - authorization for directors, get bearer token <br/>
 POST `/company` - create new company <br/>
 ### Orders
 POST `/company/orders` - create new Order <br/>
+PUT `/company/orders` - update new Order <br/>
 GET `/company/:id/orders` - get list of orders by company id <br/>
 GET `/company/:id/orders/:orderId` - get order by company id <br/>
 ### Customers
