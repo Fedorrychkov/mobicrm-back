@@ -1,5 +1,7 @@
 const { Users, createPassAndSaltHas } = require('../../models/users'),
-      crypto = require('crypto');
+      crypto = require('crypto'),
+      { INTERNAL_ERROR, BAD_REQUEST } = require('../../constants/error'),
+      { CREATED, OK } = require('../../constants/success');
 
 const DirectorSignupController = async ctx => {
     let response = {}
@@ -7,18 +9,18 @@ const DirectorSignupController = async ctx => {
     try {
         if (request.password == undefined || request.login == undefined || request.email == undefined) {
             response = {
-                body: {},
-                status: 400,
-                status_text: 'Bad Request'
+                body: {textError: 'В запросе отсутствует пароль, логин или электронная почта'},
+                status: BAD_REQUEST.status,
+                status_text: BAD_REQUEST.status_text
             }
         } else {
             const hasUserByLogin = await Users.findAll({where: {login: request.login}});
             const hasUserByEmail = await Users.findAll({where: {email: request.email}});
             if (hasUserByLogin.length > 0 || hasUserByEmail.length > 0) {
                 response = {
-                    body: {},
-                    status: 400,
-                    status_text: 'Логин или email заняты'
+                    body: {textError: 'Логин или email заняты'},
+                    status: BAD_REQUEST.status,
+                    status_text: BAD_REQUEST.status_text
                 }
             } else {
                 let cryptoHash = {
@@ -32,9 +34,9 @@ const DirectorSignupController = async ctx => {
                 const res = await Users.create(newReq);
                 if (res) {
                     response = {
-                        body: {token: ''},
-                        status: 201,
-                        status_text: 'Created'
+                        body: {textSuccess: 'Успешная регистрация'},
+                        status: CREATED.status,
+                        status_text: CREATED.status_text
                     }
                 }
             }
@@ -43,8 +45,8 @@ const DirectorSignupController = async ctx => {
         response = {
             body: {},
             errorBody: ex,
-            status: 500,
-            status_text: 'Internal Server Error'
+            status: INTERNAL_ERROR.status, 
+            status_text: INTERNAL_ERROR.status_text
         }
     }
     ctx.body = response;

@@ -3,7 +3,7 @@ const { Orders } = require('../../models/orders'),
       passport = require('koa-passport'),
       jwt = require('jsonwebtoken'),
       jwtConfig = require('../../../config/jwt.json'),
-      { INTERNAL_ERROR } = require('../../constants/error'),
+      { INTERNAL_ERROR, UNAUTHORIZED } = require('../../constants/error'),
       { CREATED } = require('../../constants/success');
 
 /**
@@ -39,8 +39,8 @@ const CreateNewOrderController = async (ctx, next) => {
                 response = {
                     body: err,
                     length: 0,
-                    status: 401,
-                    status_text: 'Unauthorized'
+                    status: UNAUTHORIZED.status,
+                    status_text: UNAUTHORIZED.status_text
                 }
             }
         } catch (ex) {

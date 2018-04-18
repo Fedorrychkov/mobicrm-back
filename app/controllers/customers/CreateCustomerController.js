@@ -1,6 +1,6 @@
 const { Customers } = require('../../models/customers'),
       passport = require('koa-passport'),
-      { INTERNAL_ERROR } = require('../../constants/error'),
+      { INTERNAL_ERROR, BAD_REQUEST, UNAUTHORIZED } = require('../../constants/error'),
       { CREATED, OK } = require('../../constants/success');
 
 /**
@@ -27,24 +27,24 @@ const CreateCustomerController = async (ctx, next) => {
                         response = { 
                             body: res, 
                             length: 0, 
-                            status: 400,
-                            status_text: 'Bad Request'
+                            status: BAD_REQUEST.status,
+                            status_text: BAD_REQUEST.status_text
                         }
                     }
                 } else {
                     response = { 
                         body: {errorText: 'Клиент с таким телефоном уже есть'}, 
                         length: 0, 
-                        status: 400,
-                        status_text: 'Bad Request'
+                        status: BAD_REQUEST.status,
+                        status_text: BAD_REQUEST.status_text
                     }
                 }
             } else {
                 response = {
                     body: err,
                     length: 0,
-                    status: 401,
-                    status_text: 'Unauthorized'
+                    status: UNAUTHORIZED.status,
+                    status_text: UNAUTHORIZED.status_text
                 }
             }
         } catch (ex) {

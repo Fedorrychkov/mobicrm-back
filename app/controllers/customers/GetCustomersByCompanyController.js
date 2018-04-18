@@ -1,7 +1,7 @@
 const { Customers } = require('../../models/customers'),
       passport = require('koa-passport'),
-      { INTERNAL_ERROR } = require('../../constants/error'),
-      { CREATED, OK } = require('../../constants/success');
+      { INTERNAL_ERROR, UNAUTHORIZED } = require('../../constants/error'),
+      { CREATED, OK, NO_CONTENT } = require('../../constants/success');
 
 /**
  * Get list of customers by company id.
@@ -23,17 +23,17 @@ const GetCustomersByCompanyController = async (ctx, next) => {
                 } else {
                     response = { 
                         body: collection, 
-                        length: collection.length, 
-                        status: 204,
-                        status_text: 'No Content'
+                        length: collection.length,
+                        status: NO_CONTENT.status,
+                        status_text: NO_CONTENT.status_text
                     }
                 }
             } else {
                 response = {
                     body: err,
                     length: 0,
-                    status: 401,
-                    status_text: 'Unauthorized'
+                    status: UNAUTHORIZED.status,
+                    status_text: UNAUTHORIZED.status_text
                 }
             }
         } catch (ex) {
