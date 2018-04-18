@@ -8,6 +8,7 @@
 ### Directors
 POST `/director` - sign up for directors <br/>
 POST `/director/login` - authorization for directors, get bearer token <br/>
+GET `/director/companies` - get list of companies by director id<br/>
 ### Companies
 POST `/company` - create new company <br/>
 PUT `/company` - update company <br/>
