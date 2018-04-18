@@ -11,6 +11,7 @@ POST `/director/login` - authorization for directors, get bearer token <br/>
 ### Companies
 POST `/company` - create new company <br/>
 PUT `/company` - update company <br/>
+GET `/company/:id` - get company by id, or user.company_id param <br/>
 ### Orders
 POST `/company/orders` - create new Order <br/>
 PUT `/company/orders` - update Order <br/>
