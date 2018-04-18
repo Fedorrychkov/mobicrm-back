@@ -10,14 +10,15 @@ POST `/director` - sign up for directors <br/>
 POST `/director/login` - authorization for directors, get bearer token <br/>
 ### Companies
 POST `/company` - create new company <br/>
+PUT `/company` - update company <br/>
 ### Orders
 POST `/company/orders` - create new Order <br/>
-PUT `/company/orders` - update new Order <br/>
+PUT `/company/orders` - update Order <br/>
 GET `/company/:id/orders` - get list of orders by company id <br/>
 GET `/company/:id/orders/:orderId` - get order by company id <br/>
 ### Customers
 POST `/company/customers` - create new Customer <br/>
-PUT `/company/customers` - update new Customer <br/>
+PUT `/company/customers` - update Customer <br/>
 GET `/company/:id/customers` - get list of customers by company id <br/>
 GET `/company/:id/customers/phone/:phone` - get list of customers by phone and company id <br/>
 GET `/company/:id/customers/:customerId` - get customer by company id <br/>

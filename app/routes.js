@@ -10,7 +10,8 @@ const { GetOrdersByCompanyIdController,
         UpdateOrdersController } = require('./controllers/orders/');
 const { DirectorSignupController,
         DirectorLoginController } = require('./controllers/directors/');
-const { CreateCompanyController } = require('./controllers/companies/');
+const { CreateCompanyController,
+        UpdateCompanyController } = require('./controllers/companies/');
 const { GetCustomerByCompanyController,
         GetCustomersByCompanyController,
         CreateCustomerController,
@@ -30,7 +31,7 @@ router.post('/director/login', bodyParser, DirectorLoginController);
  * Company Endpoints
  */
 router.post('/company', bodyParser, CreateCompanyController);
-// router.put('/company', bodyParser, {}); // Change info about company
+router.put('/company', bodyParser, UpdateCompanyController);
 // router.get('/company/:id', {}); // Get one company
 // router.get('/director/:id/company', {}); // Get List of company by director id if role == director (1)
 
