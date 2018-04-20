@@ -20,7 +20,10 @@ const { GetCustomerByCompanyController,
         CreateCustomerController,
         UpdateCustomerController,
         GetCustomerByPhone } = require('./controllers/customers');
-const { CreateNewEmployee } = require('./controllers/employees');
+const { CreateNewEmployeeController,
+        UpdateEmployeeController,
+        GetEmployeesController,
+        GetEmployeeController } = require('./controllers/employees');
 
 const router = new Router();
 
@@ -60,9 +63,10 @@ router.get('/company/:id/customers/:customerId', GetCustomerByCompanyController)
 /**
  * Employees Endpoints
  */
-router.post('/company/employees', bodyParser, CreateNewEmployee); // Create new Employee
-// router.get('/company/:id/employees', {}); // Employees list of company
-// router.get('/company/:id/employees/:employeeId', {}); // One employee of company
+router.post('/company/employees', bodyParser, CreateNewEmployeeController); // Create new Employee
+router.put('/company/employees', bodyParser, UpdateEmployeeController); // Update
+router.get('/company/:id/employees', GetEmployeesController); // Employees list of company
+router.get('/company/:id/employees/:employeeId', GetEmployeeController); // One employee of company
 // router.post('/employees/login', bodyParser, {}); // login for employees ?
 
 module.exports = router;

@@ -1,5 +1,11 @@
-const { CreateNewEmployee } = require('./CreateNewEmployee');
+const { CreateNewEmployeeController } = require('./CreateNewEmployeeController');
+const { UpdateEmployeeController } = require('./UpdateEmployeeController');
+const { GetEmployeesController } = require('./GetEmployeesController');
+const { GetEmployeeController } = require('./GetEmployeeController');
 
 module.exports = {
-    CreateNewEmployee,
+    CreateNewEmployeeController,
+    UpdateEmployeeController,
+    GetEmployeesController,
+    GetEmployeeController,
 }
