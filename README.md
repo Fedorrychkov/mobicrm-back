@@ -10,6 +10,7 @@ POST `/director` - sign up for directors <br/>
 POST `/director/login` - authorization for directors, get bearer token <br/>
 PUT `/director` - update director <br/>
 GET `/director/companies` - get list of companies by director id<br/>
+GET `/director` - get director info <br/>
 ### Companies
 POST `/company` - create new company <br/>
 PUT `/company` - update company <br/>

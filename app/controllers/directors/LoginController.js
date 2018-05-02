@@ -39,7 +39,7 @@ const DirectorLoginController = async (ctx, next) => {
     } catch (ex) {
         ctx.body = {
             body: {textError: 'Логин или пароль не верны!'}, 
-            token: '',
+            token: null,
             status: BAD_REQUEST.status,
             status_text: BAD_REQUEST.status_text
         };
