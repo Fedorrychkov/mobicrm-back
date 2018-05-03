@@ -1,4 +1,5 @@
 const { Orders } = require('../../models/orders'),
+      { Customers } = require('../../models/customers');
       passport = require('koa-passport'),
       { INTERNAL_ERROR, UNAUTHORIZED } = require('../../constants/error'),
       { CREATED, OK, NO_CONTENT } = require('../../constants/success');
@@ -12,7 +13,13 @@ const GetOrdersByCompanyIdController = async (ctx, next) => {
         let response = {}
         try {
             if (user) {
-                const collection = await Orders.findAll({where: {company_id: ctx.params.id}});
+                const res = await Orders.findAll({where: {company_id: ctx.params.id}});
+                let collection = await Promise.all(res.map( async (item, index) => {
+                    let order = { order: undefined, customer: undefined };
+                    order.order = item;
+                    order.customer = await Customers.findOne({where : {company_id: ctx.params.id, id: item.customer_id}});
+                    return order;
+                }));
                 if (collection.length > 0) {
                     response = { 
                         body: collection,
