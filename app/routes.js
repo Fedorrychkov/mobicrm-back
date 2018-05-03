@@ -11,7 +11,8 @@ const { GetOrdersByCompanyIdController,
 const { DirectorSignupController,
         DirectorLoginController,
         GetDirectorCompaniesController,
-        UpdateDirectorController } = require('./controllers/directors');
+        UpdateDirectorController,
+        GetDirectorController } = require('./controllers/directors');
 const { CreateCompanyController,
         UpdateCompanyController,
         GetCompanyController } = require('./controllers/companies');
@@ -34,6 +35,7 @@ router.post('/director', bodyParser, DirectorSignupController);
 router.post('/director/login', bodyParser, DirectorLoginController);
 router.put('/director', bodyParser, UpdateDirectorController); // change info about director
 router.get('/director/companies', GetDirectorCompaniesController);
+router.get('/director', GetDirectorController);
 
 /** 
  * Company Endpoints

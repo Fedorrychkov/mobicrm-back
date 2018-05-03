@@ -1,0 +1,35 @@
+version: '2'
+services:
+  mysql:
+    image: mobicrm-service/mysql:latest
+    restart: always
+    build:
+      context: .
+    command: mysqld --sql-mode="" --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone='+03:00'
+    volumes:
+      - /data/mysql:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=1706
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=1706
+      - MYSQL_DATABASE=mobiCRM
+
+  backend:
+    image: mobicrm-service/mobicrm-backend:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # volumes:
+      # - /data/reestr-uploads:/srv/backend/uploads
+    links:
+      - mysql
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_PASSWORD=1706
+      - MYSQL_DATABASE=mobiCRM
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=1706
