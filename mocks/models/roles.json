@@ -1,10 +1,24 @@
 {
     "items": [ 
         {
-            "name": "manager",
-            "status": "ACTIVE",
-            "date_created": "2018-04-08 12:18:59",
-            "date_updated": "2018-04-08 12:18:59"
+            "id": 1,
+            "name": "Директор",
+            "name_en": "Director"
+        },
+        {
+            "id": 2,
+            "name": "Ст. менеджер",
+            "name_en": "St. manager"
+        },
+        {
+            "id": 3,
+            "name": "Менеджер",
+            "name_en": "Manager"
+        },
+        {
+            "id": 4,
+            "name": "Монтажник",
+            "name_en": ""
         }
     ]
 }

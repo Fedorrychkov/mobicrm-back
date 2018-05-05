@@ -5,6 +5,8 @@
 *Всегда рад критике и готов принимать предложения других специалистов!* <br>
 *Разработчик* - [fedorrychkov.com](fedorrychkov.com), студент 4 курса К(П)ФУ, front-end разработчик. На данный момент работаю в Digital Zone.
 ## REST API LIST
+### Users
+GET `/user/roles` - list of roles for users <br/>
 ### Directors
 POST `/director` - sign up for directors <br/>
 POST `/director/login` - authorization for directors, get bearer token <br/>

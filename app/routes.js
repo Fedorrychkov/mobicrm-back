@@ -25,8 +25,14 @@ const { CreateNewEmployeeController,
         UpdateEmployeeController,
         GetEmployeesController,
         GetEmployeeController } = require('./controllers/employees');
+const { GetRolesController } = require('./models/roles');
 
 const router = new Router();
+
+/**
+ * Users Endpoints
+ */
+router.get('/user/roles', GetRolesController);
 
 /** 
  * Director Endpoints
@@ -43,7 +49,6 @@ router.get('/director', GetDirectorController);
 router.post('/company', bodyParser, CreateCompanyController);
 router.put('/company', bodyParser, UpdateCompanyController);
 router.get('/company/:id', GetCompanyController);
-// router.get('/director/:id/company', {}); // Get List of company by director id if role == director (1)
 
 /** 
  * Orders Endpoints

@@ -22,7 +22,6 @@ function mockData() {
     });
 }
 
-
 module.exports = {
     Roles,
 }
