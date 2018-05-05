@@ -25,14 +25,9 @@ const { CreateNewEmployeeController,
         UpdateEmployeeController,
         GetEmployeesController,
         GetEmployeeController } = require('./controllers/employees');
-const { GetRolesController } = require('./models/roles');
+const { GetRolesController } = require('./controllers/users');
 
 const router = new Router();
-
-/**
- * Users Endpoints
- */
-router.get('/user/roles', GetRolesController);
 
 /** 
  * Director Endpoints
@@ -75,5 +70,10 @@ router.put('/company/employees', bodyParser, UpdateEmployeeController); // Updat
 router.get('/company/:id/employees', GetEmployeesController); // Employees list of company
 router.get('/company/:id/employees/:employeeId', GetEmployeeController); // One employee of company
 // router.post('/employees/login', bodyParser, {}); // login for employees ?
+
+/**
+ * Users Endpoints
+ */
+router.get('/user/roles', GetRolesController);
 
 module.exports = router;
