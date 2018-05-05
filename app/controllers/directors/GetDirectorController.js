@@ -6,7 +6,7 @@ const { Users } = require('../../models/users'),
 
 /**
  * Get one director.
- * @param {ctx} - has some properties from client
+ * @param {ctx}
  */
 const GetDirectorController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
@@ -31,20 +31,10 @@ const GetDirectorController = async (ctx, next) => {
                     status_text: OK.status_text
                 }
             } else {
-                response = {
-                    body: err,
-                    length: 0,
-                    status: UNAUTHORIZED.status,
-                    status_text: UNAUTHORIZED.status_text
-                }
+                ctx.response.status = UNAUTHORIZED.status;
             }
         } catch (ex) {
-            response = { 
-                body: ex,
-                length: 0, 
-                status: INTERNAL_ERROR.status, 
-                status_text: INTERNAL_ERROR.status_text
-            }
+            ctx.response.status = INTERNAL_ERROR.status;
         }
         ctx.body = response;
     })(ctx, next);

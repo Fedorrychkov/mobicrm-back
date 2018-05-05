@@ -42,12 +42,7 @@ const DirectorSignupController = async ctx => {
             }
         }
     } catch (ex) {
-        response = {
-            body: {},
-            errorBody: ex,
-            status: INTERNAL_ERROR.status, 
-            status_text: INTERNAL_ERROR.status_text
-        }
+        ctx.response.status = INTERNAL_ERROR.status;
     }
     ctx.body = response;
 }

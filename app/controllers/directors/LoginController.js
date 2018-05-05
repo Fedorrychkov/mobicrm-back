@@ -10,12 +10,7 @@ const DirectorLoginController = async (ctx, next) => {
         await passport.authenticate('local', (err, user) => {
             response = {};
             if (user == false) {
-                response = { 
-                    body: err, 
-                    status: INTERNAL_ERROR.status,
-                    status_text: INTERNAL_ERROR.status_text
-                }
-                ctx.body = response;
+                ctx.response.status = BAD_REQUEST.status;
             } else {
                 const payload = {
                     id: user.id,
@@ -37,12 +32,7 @@ const DirectorLoginController = async (ctx, next) => {
             }
         })(ctx, next);
     } catch (ex) {
-        ctx.body = {
-            body: {textError: 'Логин или пароль не верны!'}, 
-            token: null,
-            status: BAD_REQUEST.status,
-            status_text: BAD_REQUEST.status_text
-        };
+        ctx.response.status = INTERNAL_ERROR.status;
     }
 }
 
