@@ -32,7 +32,7 @@ const DirectorLoginController = async (ctx, next) => {
             }
         })(ctx, next);
     } catch (ex) {
-        ctx.response.status = INTERNAL_ERROR.status;
+        ctx.response.status = BAD_REQUEST.status;
     }
 }
 
