@@ -7,6 +7,8 @@
 ## REST API LIST
 ### Users
 GET `/user/roles` - list of roles for users <br/>
+POST `/user/auth` - authorization for users and get bearer token <br/>
+GET `/user` - get user information, endpoint for all users <br/>
 ### Directors
 POST `/director` - sign up for directors <br/>
 POST `/director/login` - authorization for directors, get bearer token <br/>
