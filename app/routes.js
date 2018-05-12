@@ -75,7 +75,7 @@ router.get('/company/:id/employees/:employeeId', GetEmployeeController); // One 
 /**
  * Users Endpoints
  */
-router.get('/user/roles', GetRolesController);
 router.post('/user/auth', bodyParser, UsersLoginController);
+router.get('/user/roles', GetRolesController);
 
 module.exports = router;

@@ -6,6 +6,7 @@ const passport = require('koa-passport'),
 
 
 const UsersLoginController = async (ctx, next) => {
+    console.log('ctx ', ctx);
     try {
         await passport.authenticate('local', (err, user) => {
             response = {};
@@ -36,7 +37,7 @@ const UsersLoginController = async (ctx, next) => {
             }
         })(ctx, next);
     } catch (ex) {
-        ctx.response.status = BAD_REQUEST.status;
+        ctx.response.status = INTERNAL_ERROR.status;
     }
 }
 
