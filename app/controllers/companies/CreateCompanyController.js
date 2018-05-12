@@ -3,18 +3,20 @@ const passport = require('koa-passport'),
       jwtConfig = require('../../../config/jwt.json'),
       { Companies } = require('../../models/companies'),
       { INTERNAL_ERROR, UNAUTHORIZED, BAD_REQUEST } = require('../../constants/error'),
-      { CREATED } = require('../../constants/success');
+      { CREATED } = require('../../constants/success'),
+      { directorRoleId } = require('../../constants/roles');
 
 const CreateCompanyController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
         try {
-            if (user && user.role == 1) {
+            if (user && user.role == directorRoleId) {
                 const req = ctx.request.body;
+                if (!req.currency) req.currency = 'RUB';
                 let newReq = {
                     ...req,
                     director_id: user.id,
-                    status: 'NEW COMPANY',
+                    status: 'ACTIVE',
                 };
                 const res = await Companies.create(newReq);
 
@@ -26,20 +28,10 @@ const CreateCompanyController = async (ctx, next) => {
                     }
                 }
             } else {
-                response = {
-                    body: err,
-                    length: 0,
-                    status: UNAUTHORIZED.status,
-                    status_text: UNAUTHORIZED.status_text
-                }
+                ctx.response.status = UNAUTHORIZED.status;
             }
         } catch (ex) {
-            response = { 
-                body: {},
-                length: 0, 
-                status: INTERNAL_ERROR.status, 
-                status_text: INTERNAL_ERROR.status_text
-            }
+            ctx.response.status = INTERNAL_ERROR.status;
         }
         ctx.body = response;
     })(ctx, next);

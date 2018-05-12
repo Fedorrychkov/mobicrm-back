@@ -1,7 +1,8 @@
 const { Companies } = require('../../models/companies'),
       passport = require('koa-passport'),
       { INTERNAL_ERROR, BAD_REQUEST, UNAUTHORIZED } = require('../../constants/error'),
-      { CREATED, OK } = require('../../constants/success');
+      { CREATED, OK } = require('../../constants/success'),
+      { directorRoleId } = require('../../constants/roles');
 
 /**
  * Update company.
@@ -13,7 +14,7 @@ const UpdateCompanyController = async (ctx, next) => {
         try {
             if (user) {
                 const req = ctx.request.body;
-                if (user.role === 1) {
+                if (user.role === directorRoleId) {
                     const customer = await Companies.findOne({where: {id: req.id}});
                     if (customer) {
                         const res = await Companies.update({...req}, { where: {id: req.id}});

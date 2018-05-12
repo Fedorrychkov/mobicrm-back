@@ -26,6 +26,7 @@ const CreateNewOrderController = async (ctx, next) => {
                         req.customer_id = checkPhone.id;
                     }
                 }
+                if (!req.price) req.price = 0;
                 const res = await Orders.create(req);
                 if (res) {
                     const resCustomer = await Customers.findById(res.customer_id); // add more information in response about customer
@@ -36,20 +37,10 @@ const CreateNewOrderController = async (ctx, next) => {
                     }
                 }
             } else {
-                response = {
-                    body: err,
-                    length: 0,
-                    status: UNAUTHORIZED.status,
-                    status_text: UNAUTHORIZED.status_text
-                }
+                ctx.response.status = UNAUTHORIZED.status;
             }
         } catch (ex) {
-            response = { 
-                body: ex,
-                length: 0, 
-                status: INTERNAL_ERROR.status, 
-                status_text: INTERNAL_ERROR.status_text
-            }
+            ctx.response.status = INTERNAL_ERROR.status;
         }
         ctx.body = response;
     })(ctx, next);

@@ -3,7 +3,8 @@ const { Users, createPassAndSaltHas } = require('../../models/users'),
       jwt = require('jsonwebtoken'),
       jwtConfig = require('../../../config/jwt.json'),
       { INTERNAL_ERROR, UNAUTHORIZED, BAD_REQUEST } = require('../../constants/error'),
-      { CREATED } = require('../../constants/success');
+      { CREATED } = require('../../constants/success'),
+      { directorRoleId, seniorManagerRoleId } = require('../../constants/roles');
 
 /**
  * Create new Employee.
@@ -12,7 +13,7 @@ const CreateNewEmployeeController = async (ctx, next) => {
     await passport.authenticate('jwt', async (err, user) => {
         let response = {}
         try {
-            if (user && user.role === 1) {
+            if (user && ( user.role === directorRoleId || user.role === seniorManagerRoleId )) {
                 const req = ctx.request.body;
                 const checkUserLogin = await Users.findOne({where: {login: req.login}});
                 const checkUserEmail = await Users.findOne({where: {email: req.email}});

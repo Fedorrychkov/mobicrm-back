@@ -1,7 +1,8 @@
 const { Companies } = require('../../models/companies'),
       passport = require('koa-passport'),
       { INTERNAL_ERROR, UNAUTHORIZED, BAD_REQUEST } = require('../../constants/error'),
-      { CREATED, OK, NO_CONTENT } = require('../../constants/success');
+      { CREATED, OK, NO_CONTENT } = require('../../constants/success'),
+      { directorRoleId } = require('../../constants/roles');
 
 /**
  * Get company.
@@ -12,7 +13,7 @@ const GetCompanyController = async (ctx, next) => {
         let response = {}
         try {
             if (user) {
-                const company = user.role === 1 ? 
+                const company = user.role === directorRoleId ? 
                     await Companies.findOne({where: {director_id: user.id, id: ctx.params.id}}) :
                     await Companies.findOne({where: {id: user.company_id}}); // if director, else for employees
                 
