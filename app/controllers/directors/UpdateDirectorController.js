@@ -25,12 +25,7 @@ const UpdateDirectorController = async (ctx, next) => {
                         }
                     }
                 } else {
-                    response = { 
-                        body: {textError: 'Что-то пошло не так'}, 
-                        length: 0, 
-                        status: BAD_REQUEST.status,
-                        status_text: BAD_REQUEST.status_text
-                    }
+                    ctx.response.status = BAD_REQUEST.status;
                 }
             } else {
                 ctx.response.status = UNAUTHORIZED.status;

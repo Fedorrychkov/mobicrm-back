@@ -25,7 +25,8 @@ const { CreateNewEmployeeController,
         UpdateEmployeeController,
         GetEmployeesController,
         GetEmployeeController } = require('./controllers/employees');
-const { GetRolesController } = require('./controllers/users');
+const { GetRolesController,
+        UsersLoginController } = require('./controllers/users');
 
 const router = new Router();
 
@@ -33,7 +34,7 @@ const router = new Router();
  * Director Endpoints
  */
 router.post('/director', bodyParser, DirectorSignupController);
-router.post('/director/login', bodyParser, DirectorLoginController);
+// router.post('/director/login', bodyParser, DirectorLoginController);
 router.put('/director', bodyParser, UpdateDirectorController); // change info about director
 router.get('/director/companies', GetDirectorCompaniesController);
 router.get('/director', GetDirectorController);
@@ -75,5 +76,6 @@ router.get('/company/:id/employees/:employeeId', GetEmployeeController); // One 
  * Users Endpoints
  */
 router.get('/user/roles', GetRolesController);
+router.post('/user/auth', bodyParser, UsersLoginController);
 
 module.exports = router;

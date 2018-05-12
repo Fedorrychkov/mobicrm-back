@@ -19,6 +19,9 @@ const Users = db.define('users', {
     email: Sequelize.STRING,
     avatar: Sequelize.STRING,
     role: Sequelize.INTEGER,
+    rate_per_hour: Sequelize.INTEGER, // У пользователя может быть указана зарплата в час, за заказ, за месяц.
+    rate_per_month: Sequelize.INTEGER, // Чтобы что-то не считалось нужно это поле очистить в базе
+    rate_per_order: Sequelize.INTEGER, // А так, можно считать rate per order + rate per month, rate_per_order указывается в % от стоимости заказа.
     status: Sequelize.STRING,
     who_created: Sequelize.INTEGER,
     date_birthday: Sequelize.STRING,

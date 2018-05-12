@@ -14,6 +14,7 @@ const Companies = db.define('companies', {
     tags: Sequelize.STRING(999),
     address: Sequelize.STRING,
     status: Sequelize.STRING,
+    currency: Sequelize.STRING, //Валюта компании, по дефолту RUB
     avatar: Sequelize.STRING(700),
     date_created: Sequelize.STRING,
     date_updated: Sequelize.STRING,

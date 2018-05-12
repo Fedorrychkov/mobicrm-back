@@ -6,10 +6,11 @@ const Roles = db.define('roles', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: false
     },
     name: Sequelize.STRING, // Менеджер, Исполнитель
     status: Sequelize.STRING,
+    type: Sequelize.STRING,
     date_created: Sequelize.STRING,
     date_updated: Sequelize.STRING,
 });

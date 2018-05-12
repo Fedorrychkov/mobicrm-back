@@ -25,6 +25,7 @@ const CreateNewEmployeeController = async (ctx, next) => {
                     let newReq = req;
                     newReq.password = cryptoHash.passHash;
                     newReq.salt = cryptoHash.salt;
+                    if (!req.rate_per_order && !req.rate_per_hour && !req.rate_per_month) newReq.rate_per_order = 10;
                     const res = await Users.create(newReq);
                     if (res) {
                         const checkRes = await Users.findById(res.id);

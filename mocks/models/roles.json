@@ -3,22 +3,22 @@
         {
             "id": 1,
             "name": "Директор",
-            "name_en": "Director"
+            "type": "DIRECTOR"
         },
         {
             "id": 2,
             "name": "Ст. менеджер",
-            "name_en": "St. manager"
+            "type": "SENIOR_MANAGER"
         },
         {
             "id": 3,
             "name": "Менеджер",
-            "name_en": "Manager"
+            "type": "MANAGER"
         },
         {
             "id": 4,
             "name": "Монтажник",
-            "name_en": ""
+            "type": "WORKER"
         }
     ]
 }
