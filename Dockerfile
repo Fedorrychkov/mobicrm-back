@@ -2,6 +2,8 @@ FROM keymetrics/pm2:latest-alpine
 
 # Bundle APP files
 COPY app app/
+COPY config config/
+COPY mocks mocks/
 COPY package.json .
 COPY pm2.json .
 
