@@ -28,6 +28,7 @@ const { CreateNewEmployeeController,
 const { GetRolesController,
         UsersLoginController,
         GetUserController } = require('./controllers/users');
+const { GetCompanyStatisticController } = require('./controllers/analytics');
 
 const router = new Router();
 
@@ -79,5 +80,10 @@ router.get('/company/:id/employees/:employeeId', GetEmployeeController); // One 
 router.post('/user/auth', bodyParser, UsersLoginController);
 router.get('/user/roles', GetRolesController);
 router.get('/user', GetUserController);
+
+/**
+ * Analytic endpoints
+ */
+router.get('/analytics/orders/:companyId', GetCompanyStatisticController)
 
 module.exports = router;
