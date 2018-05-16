@@ -35,3 +35,6 @@ POST `/company/employees` - create new employee <br/>
 PUT `/company/employees` - update employee info <br/>
 GET `/company/:id/employees` - get list of employees<br/>
 GET `/company/:id/employees/:employeeId` - get one employee<br/>
+
+### Analytics
+GET `/analytics/orders/:companyId` - get some analytic onfo about orders by company

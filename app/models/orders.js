@@ -13,6 +13,9 @@ const Orders = db.define('orders', {
     executor_id: Sequelize.INTEGER, // Исполнитель
     name: Sequelize.STRING, // Title
     address: Sequelize.STRING(300),
+    // region: Sequelize.STRING,
+    // postalcode: Sequelize.STRING,
+    // room: Sequelize.STRING,
     longitude: Sequelize.STRING,
     latitude: Sequelize.STRING,
     description: Sequelize.STRING(400),
