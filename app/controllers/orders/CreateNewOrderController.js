@@ -4,7 +4,8 @@ const { Orders } = require('../../models/orders'),
       jwt = require('jsonwebtoken'),
       jwtConfig = require('../../../config/jwt.json'),
       { INTERNAL_ERROR, UNAUTHORIZED } = require('../../constants/error'),
-      { CREATED } = require('../../constants/success');
+      { CREATED } = require('../../constants/success'),
+      { ORDER_NEW } = require('../../constants/orderStatuses');
 
 /**
  * Create a new Order.
@@ -15,6 +16,8 @@ const CreateNewOrderController = async (ctx, next) => {
         try {
             if (user) {
                 const req = ctx.request.body;
+                if (!req.price) req.price = 0;
+                if (!req.status) req.status = ORDER_NEW; // 'NEW'
                 req.customer.company_id = req.company_id; // Add company_id in customer model
                 req.who_created = user.id;
                 if (req.customer) { // if we have customer property, we have try find customer by phone
@@ -26,7 +29,6 @@ const CreateNewOrderController = async (ctx, next) => {
                         req.customer_id = checkPhone.id;
                     }
                 }
-                if (!req.price) req.price = 0;
                 const res = await Orders.create(req);
                 if (res) {
                     const resCustomer = await Customers.findById(res.customer_id); // add more information in response about customer
