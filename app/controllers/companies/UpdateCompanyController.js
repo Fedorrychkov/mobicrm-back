@@ -15,14 +15,13 @@ const UpdateCompanyController = async (ctx, next) => {
             if (user) {
                 const req = ctx.request.body;
                 if (user.role === directorRoleId) {
-                    const customer = await Companies.findOne({where: {id: req.id}});
-                    if (customer) {
+                    const company = await Companies.findOne({where: {id: req.id}});
+                    if (company) {
                         const res = await Companies.update({...req}, { where: {id: req.id}});
                         if (res) {
                             const checkRes = await Companies.findOne({where: {id: req.id}});
-                            response = { 
+                            response = {
                                 body: checkRes,
-                                length: 1,
                                 status: OK.status,
                                 status_text: OK.status_text
                             }
