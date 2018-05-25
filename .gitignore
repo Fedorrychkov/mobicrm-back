@@ -1,3 +1,6 @@
 node_modules/
+config/database.json
+config/jwt.json
+app/constants/roles.js
 npm-debug.log
 mobibackend-docker.tar

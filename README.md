@@ -8,6 +8,7 @@
 ### Users
 GET `/user/roles` - list of roles for users <br/>
 POST `/user/auth` - authorization for users and get bearer token <br/>
+PUT `/user/update` - update user, for all, only common props <br/>
 GET `/user` - get user information, endpoint for all users <br/>
 ### Directors
 POST `/director` - sign up for directors <br/>

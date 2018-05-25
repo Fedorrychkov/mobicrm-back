@@ -27,7 +27,8 @@ const { CreateNewEmployeeController,
         GetEmployeeController } = require('./controllers/employees');
 const { GetRolesController,
         UsersLoginController,
-        GetUserController } = require('./controllers/users');
+        GetUserController,
+        UserUpdateController } = require('./controllers/users');
 const { GetCompanyStatisticController } = require('./controllers/analytics');
 
 const router = new Router();
@@ -78,6 +79,7 @@ router.get('/company/:id/employees/:employeeId', GetEmployeeController); // One 
  * Users Endpoints
  */
 router.post('/user/auth', bodyParser, UsersLoginController);
+router.put('/user/update', bodyParser, UserUpdateController);
 router.get('/user/roles', GetRolesController);
 router.get('/user', GetUserController);
 
